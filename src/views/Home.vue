@@ -11,7 +11,6 @@
             :rules="[(value) => !!value || 'Name field is required']"
           ></v-text-field>
           <v-file-input
-            :rules="[(value) => !!value || 'Photo is required']"
             accept="image/png, image/jpeg, image/bmp"
             placeholder="Pick an avatar"
             prepend-icon="mdi-camera"
@@ -58,8 +57,10 @@ export default {
       this.valid = this.$refs.form.validate();
       if (this.valid) {
         setTimeout(() => {
-          const file = this.user.img;
-          this.user.img = URL.createObjectURL(file);
+          if (this.user.img != null) {
+            const file = this.user.img;
+            this.user.img = URL.createObjectURL(file);
+          }
 
           this.$store.dispatch("auth/login", this.user).then(() => {
             this.$store

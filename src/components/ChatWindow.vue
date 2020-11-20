@@ -38,8 +38,8 @@
         <p class="ml-3 text-h4">{{ currentFriendName }}</p>
         <div
           class="message ma-2"
-          v-for="mes in messages"
-          :key="mes"
+          v-for="(mes,i) in messages"
+          :key="i"
           d-flex
           flex-row
           fluid
